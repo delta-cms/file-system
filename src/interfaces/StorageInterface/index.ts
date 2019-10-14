@@ -4,7 +4,7 @@ import { Dirent, Stats } from 'fs'
 import { FileType } from '@/types/FileType'
 import { DirectoryInterface } from '../DirectoryInterface'
 import { FileInterface } from '../FileInterface'
-import { DirectoryElementCollection } from '@/classes/DirectoryElementCollection'
+import { DirectoryElementCollection } from '@/types/DirectoryElementCollection'
 import { MimeType } from '@/classes/MimeType'
 import { WriteStream } from 'fs'
 

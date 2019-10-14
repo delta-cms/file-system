@@ -6,7 +6,7 @@ import { ReadStream, Stats, Dirent } from 'fs'
 import { PromiseOrType } from '@/types/PromiseOrType'
 import { Directory } from '../Directory'
 import { File } from '../File'
-import { DirectoryElementCollection } from '../DirectoryElementCollection'
+import { DirectoryElementCollection } from '@/types/DirectoryElementCollection'
 import { MimeType } from '../MimeType'
 
 /**
