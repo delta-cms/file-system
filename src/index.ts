@@ -12,7 +12,6 @@ export * from './adapters/LocalAdapter'
  * Classes
  */
 export * from './classes/Directory'
-export * from './classes/DirectoryElementCollection'
 export * from './classes/File'
 export * from './classes/MimeType'
 export * from './classes/Storage'
@@ -49,6 +48,7 @@ export * from './interfaces/WriteInterface'
 export * from './types/FileType'
 // export * from './types/PromiseOrType' // Details...
 export * from './types/StorageOptions'
+export * from './types/DirectoryElementCollection'
 
 /**
  * Utilities exports.
