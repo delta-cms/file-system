@@ -17,6 +17,10 @@
     "include": [
       "src/**/*.ts"
     ],
+    "exclude": [
+      "src/interfaces",
+      "src/types"
+    ],
     "extension": [
       ".ts"
     ],
