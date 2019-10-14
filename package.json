@@ -7,8 +7,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
-    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register test/**/*.ts",
-    "test-single": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
+    "test": "npm run test-target test/**/*.ts",
+    "test-target": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
     "cover": "nyc npm test",
     "typedoc": "typedoc --out ./docs/ ./src/"
   },
