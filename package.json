@@ -1,0 +1,43 @@
+{
+  "name": "@delta-cms/file-system",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "test": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register test/**/*.ts",
+    "test-single": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
+    "cover": "nyc npm test",
+    "typedoc": "typedoc --out ./docs/ ./src/"
+  },
+  "author": "hota1024",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-fs": "^2.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "@types/node": "^12.7.8",
+    "file-type": "^12.3.0",
+    "mime": "^2.4.4",
+    "read-chunk": "^3.2.0",
+    "rmdir-recursive": "^0.0.1",
+    "typedoc": "^0.15.0"
+  }
+}
