@@ -207,13 +207,13 @@ export class Storage extends HasBasePath implements StorageInterface {
     const collection: DirectoryElementCollection = []
 
     for (const element of elements) {
-      if (element.isFile()) {
-        collection.push(
-          this.getFile(this.resolvePath(directoryName, element.name))
-        )
-      } else if (element.isDirectory()) {
+      if (element.isDirectory()) {
         collection.push(
           this.getDirectory(this.resolvePath(directoryName, element.name))
+        )
+      } else {
+        collection.push(
+          this.getFile(this.resolvePath(directoryName, element.name))
         )
       }
     }

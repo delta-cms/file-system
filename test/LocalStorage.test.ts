@@ -8,7 +8,9 @@ import {
   FileAlreadyExistsException,
   FileNotExistsException,
   DirectoryAlreadyExistsException,
-  DirectoryNotExistsException
+  DirectoryNotExistsException,
+  File,
+  Directory
 } from '../src'
 
 describe('LocalStorage test', () => {
@@ -306,6 +308,16 @@ describe('LocalStorage test', () => {
     expect(await storage.dirname('test/test.txt')).to.equal('test')
     expect(await storage.dirname('nyan/test/test.txt')).to.equal('nyan/test')
     expect(await storage.dirname('test/test/test.txt')).to.equal('test/test')
+  })
+
+  it('getFiles should return files and directories instances', async () => {
+    await storage.write('a.txt', '')
+    await storage.write('b.txt', '')
+    await storage.createDirectory('c')
+    const files = await storage.getFiles('.')
+    expect(files[0]).to.be.an.instanceOf(File)
+    expect(files[1]).to.be.an.instanceOf(File)
+    expect(files[2]).to.be.an.instanceOf(Directory)
   })
 
   it('DirectoryAlreadyExistsException.toString should return message', () => {
