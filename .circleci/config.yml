@@ -32,8 +32,4 @@ jobs:
 
       - run:
           name: coverage
-          command: npm run cover
-
-      - run:
-          name: codecov
-          command: npm run codecov
+          command: npm run cover-ci
