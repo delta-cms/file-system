@@ -10,7 +10,7 @@
     "test": "npm run test-target test/**/*.ts",
     "test-target": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
     "cover": "nyc npm test",
-    "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "cover-ci": "npm run cover; nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "typedoc": "typedoc --out ./docs/ ./src/"
   },
   "author": "hota1024",
