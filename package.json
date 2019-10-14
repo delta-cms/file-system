@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
     "test": "npm run test-target test/**/*.ts",
     "test-target": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
-    "cover": "nyc npm test",
+    "cover": "nyc npm test > coverage.lcov",
     "typedoc": "typedoc --out ./docs/ ./src/"
   },
   "author": "hota1024",
