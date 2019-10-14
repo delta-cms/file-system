@@ -33,7 +33,7 @@ jobs:
       - run:
           name: coverage
           command: npm run cover
-      
-      -run:
+
+      - run:
           name: codecov
           command: npm run codecov
