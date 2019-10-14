@@ -9,7 +9,8 @@
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore .",
     "test": "npm run test-target test/**/*.ts",
     "test-target": "TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' mocha -r ts-node/register -r tsconfig-paths/register",
-    "cover": "nyc npm test > coverage.lcov",
+    "cover": "nyc npm test",
+    "cover-ci": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "typedoc": "typedoc --out ./docs/ ./src/"
   },
   "author": "hota1024",
@@ -22,6 +23,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "chai-fs": "^2.0.0",
+    "codecov": "^3.6.1",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
