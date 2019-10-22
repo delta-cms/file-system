@@ -6,14 +6,15 @@ import { Storage, LocalAdapter, Directory, File } from '../src'
 
 describe('Directory test', async () => {
   const TestStoragePath = `${__dirname}/test-storage`
-  const storage = new Storage(new LocalAdapter(), {
-    basePath: TestStoragePath
-  })
+  let storage: Storage
   let directory: Directory
 
   beforeEach(async () => {
     rmdir(TestStoragePath)
     fs.mkdirSync(TestStoragePath)
+    storage = new Storage(new LocalAdapter(), {
+      basePath: TestStoragePath
+    })
     await storage.createDirectory('test')
     directory = await storage.getDirectory('test')
   })
@@ -47,6 +48,14 @@ describe('Directory test', async () => {
     expect(directory.name).to.equal('hello')
     expect(directory.path).to.equal('hello')
     expect(directory.fullPath).to.equal(`${__dirname}/test-storage/hello`)
+  })
+
+  it('rename should rename child files', async () => {
+    const a = await storage.write('test/a.txt', '')
+    const b = await storage.write('test/b.txt', '')
+    await directory.rename('dir')
+    expect(a.path).to.equal('dir/a.txt')
+    expect(b.path).to.equal('dir/b.txt')
   })
 
   it('files should return child files', async () => {

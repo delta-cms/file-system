@@ -8,11 +8,14 @@ import { Directory } from '../Directory'
 import { File } from '../File'
 import { DirectoryElementCollection } from '@/types/DirectoryElementCollection'
 import { MimeType } from '../MimeType'
+import { JoinPath } from '@/utilities'
 
 /**
  * Storage class.
  */
 export class Storage extends HasBasePath implements StorageInterface {
+  private readonly files: (File | Directory)[] = []
+
   /**
    * Storage constructor.
    *
@@ -152,7 +155,14 @@ export class Storage extends HasBasePath implements StorageInterface {
    * @inheritdoc
    */
   async rename(path: string, newPath: string) {
+    if ((await this.statsFile(path)).isDirectory()) {
+      const files = await this.getFiles(path)
+      for (const file of files) {
+        file.setPath(JoinPath(newPath, file.name))
+      }
+    }
     await this.adapter.rename(this.resolvePath(path), this.resolvePath(newPath))
+
     return newPath
   }
 
@@ -189,14 +199,24 @@ export class Storage extends HasBasePath implements StorageInterface {
    * @inheritdoc
    */
   getFile(path: string) {
-    return new File(this.asStorageInterface, path)
+    let file = this.files.find(file => file.path === path)
+    if (!file) {
+      file = new File(this.asStorageInterface, path)
+      this.files.push(file)
+    }
+    return file as File
   }
 
   /**
    * @inheritdoc
    */
   getDirectory(directoryName: string) {
-    return new Directory(this.asStorageInterface, directoryName)
+    let directory = this.files.find(file => file.path === directoryName)
+    if (!directory) {
+      directory = new Directory(this.asStorageInterface, directoryName)
+      this.files.push(directory)
+    }
+    return directory as Directory
   }
 
   /**
@@ -209,12 +229,10 @@ export class Storage extends HasBasePath implements StorageInterface {
     for (const element of elements) {
       if (element.isDirectory()) {
         collection.push(
-          this.getDirectory(this.resolvePath(directoryName, element.name))
+          this.getDirectory(JoinPath(directoryName, element.name))
         )
       } else {
-        collection.push(
-          this.getFile(this.resolvePath(directoryName, element.name))
-        )
+        collection.push(this.getFile(JoinPath(directoryName, element.name)))
       }
     }
 

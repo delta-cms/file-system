@@ -16,4 +16,11 @@ export interface HasPathInterface {
    * Name.
    */
   readonly name: string
+
+  /**
+   * Set path.
+   *
+   * @param path
+   */
+  setPath(path: string)
 }

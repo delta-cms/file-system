@@ -143,4 +143,11 @@ export class File implements FileInterface {
   async delete() {
     await this.storage.delete(this.path)
   }
+
+  /**
+   * @inheritdoc
+   */
+  setPath(path: string) {
+    this._path = path
+  }
 }

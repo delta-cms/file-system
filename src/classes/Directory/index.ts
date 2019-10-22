@@ -118,4 +118,11 @@ export class Directory implements DirectoryInterface {
   async delete() {
     await this.storage.deleteDirectory(this.path)
   }
+
+  /**
+   * @inheritdoc
+   */
+  setPath(path: string) {
+    this._path = path
+  }
 }

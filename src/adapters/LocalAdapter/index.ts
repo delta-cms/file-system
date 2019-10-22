@@ -74,7 +74,8 @@ export class LocalAdapter implements AdapterInterface {
   /**
    * @inheritdoc
    */
-  statsFile(path: string) {
+  async statsFile(path: string) {
+    if (!(await this.has(path))) throw new FileNotExistsException(path)
     return promisify(fs.stat)(path)
   }
 
